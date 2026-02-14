@@ -4,6 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private InputControler movementInputs;
+    [SerializeField] private string bulletTag;
 
     private Rigidbody2D _rb;
 
@@ -21,5 +22,13 @@ public class PlayerMovement : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Debug.Log("Player died");
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == bulletTag)
+        {
+            Death();
+        }
     }
 }
